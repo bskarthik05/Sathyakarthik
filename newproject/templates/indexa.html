@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Login/Sign Up</title>
+  <style>
+    /* CSS Styles */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }   
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url('https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg') no-repeat center center/cover;
+    }
+
+    .container, .home-page {
+      text-align: center;
+      background: rgba(26, 26, 26, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.1);
+      width: 320px;
+      backdrop-filter: blur(5px);
+    }
+
+    h2 {
+      color: #00ffff;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .input-group {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"] {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #00ffff;
+      padding: 10px 10px 10px 5px;
+      color: #fff;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="date"]:focus {
+      border-color: #00ffb3;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 8px #00ffb3;
+      }
+      50% {
+        box-shadow: 0 0 16px #00ffff;
+      }
+      100% {
+        box-shadow: 0 0 8px #00ffb3;
+      }
+    }
+
+    label {
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      color: #999;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    input:focus ~ label,
+    input:valid ~ label {
+      top: -10px;
+      font-size: 12px;
+      color: #00ffff;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #00ffff;
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .toggle-password:hover {
+      color: #00ffb3;
+    }
+
+    .button {
+      background: #00ffff;
+      border: none;
+      color: #1a1a1a;
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .button:hover {
+      background-color: #00ffb3;
+      box-shadow: 0 0 15px #00ffff, 0 0 20px #00ffb3;
+    }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #00ffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .link:hover {
+      color: #00ffb3;
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      font-size: 12px;
+      display: none;
+    }
+
+    .home-page h1 {
+      color: #00ffff;
+      font-size: 36px;
+      margin-top: 20px;
+    }
+
+    .file-upload-section {
+      margin-top: 20px;
+      color: #00ffff;
+      font-size: 18px;
+    }
+
+    .upload-info {
+      margin-top: 10px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Authentication Container -->
+  <div class="container" id="auth-container">
+    <h2 id="form-title">Login</h2>
+
+    <!-- Login Form -->
+    <div id="login-form">
+      <div class="input-group">
+        <input type="text" id="login-username" required>
+        <label for="login-username">Username</label>
+      </div>
+      <div class="input-group">
+        <input type="password" id="login-password" required>
+        <label for="login-password">Password</label>
+        <span class="toggle-password" onclick="togglePasswordVisibility('login-password')">👁️</span>
+      </div>
+      <button class="button" onclick="login()">Sign In</button>
+      <p class="error-message" id="login-error">Incorrect login details</p>
+      <a href="#" class="link" onclick="showSignUp()">Don't have an account? Sign up</a>
+    </div>
+
+    <!-- Sign Up Form -->
+    <div id="signup-form" style="display: none;">
+      <div class="input-group">
+        <input type="text" id="first-name" required>
+        <label for="first-name">First Name</label>
+      </div>
+      <div class="input-group">
+        <input type="text" id="last-name" required>
+        <label for="last-name">Last Name</label>
+      </div>
+      <div class="input-group">
+        <input type="text" id="signup-username" required>
+        <label for="signup-username">Username</label>
+      </div>
+      <div class="input-group">
+        <input type="date" id="dob" required>
+        <label for="dob">Date of Birth</label>
+      </div>
+      <div class="input-group">
+        <input type="password" id="signup-password" required>
+        <label for="signup-password">Password</label>
+        <span class="toggle-password" onclick="togglePasswordVisibility('signup-password')">👁️</span>
+      </div>
+      <div class="input-group">
+        <input type="password" id="confirm-password" required>
+        <label for="confirm-password">Confirm Password</label>
+        <span class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">👁️</span>
+      </div>
+      <p class="error-message" id="error-message">Passwords do not match</p>
+      <button class="button" onclick="signUp()">Sign Up</button>
+      <a href="#" class="link" onclick="showLogin()">Already have an account? Log in</a>
+    </div>
+  </div>
+
+  <!-- Home Page -->
+  <div class="home-page" id="home-page" style="display: none;">
+    <h1>Welcome to Home Page</h1>
+    <div class="file-upload-section">
+      <p>Upload an image to check if it's Real or Forge</p>
+      <input type="file" id="image-upload" accept="image/*" onchange="analyzeImage()">
+      <p class="upload-info" id="upload-info"></p>
+    </div>
+  </div>
+
+  <script>
+    // Store sign-up details
+    let savedUsername = "";
+    let savedPassword = "";
+
+    // Toggle visibility between login and sign-up forms
+    function showSignUp() {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('signup-form').style.display = 'block';
+      document.getElementById('form-title').innerText = 'Sign Up';
+    }
+
+    function showLogin() {
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('form-title').innerText = 'Login';
+    }
+
+    // Toggle password visibility
+    function togglePasswordVisibility(id) {
+      const passwordField = document.getElementById(id);
+      passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+    }
+
+    // Sign-up form validation
+    function signUp() {
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const errorMessage = document.getElementById('error-message');
+
+      if (password !== confirmPassword) {
+        errorMessage.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'none';
+        savedUsername = document.getElementById('signup-username').value;
+        savedPassword = password;
+        alert('Account created successfully!');
+        showLogin();
+      }
+    }
+
+    // Login validation
+    function login() { 
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const loginError = document.getElementById('login-error');
+
+      if (username === savedUsername && password === savedPassword) {
+        document.getElementById('auth-container').style.display = 'none';
+        document.getElementById('home-page').style.display = 'block';
+      } else {
+        loginError.style.display = 'block';
+      }
+    }
+
+    // Mock image analysis function
+    function analyzeImage() {
+      const uploadInfo = document.getElementById('upload-info');
+      const fileInput = document.getElementById('image-upload').files[0];
+
+      if (fileInput) {
+        // Mock result for image analysis
+        const isReal = Math.random() > 0.5;
+        const accuracy = Math.floor(Math.random() * 20) + 80; // 80% - 100%
+
+        uploadInfo.innerText = `Status: ${isReal ? 'Real' : 'Forge'}, Accuracy: ${accuracy}%`;
+      } else {
+        uploadInfo.innerText = "Please select an image to upload.";
+      }
+    }
+  </script>
+</body>
+</html>
