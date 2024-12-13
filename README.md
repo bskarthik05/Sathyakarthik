@@ -79,7 +79,7 @@ This project aims to develop a signature verification system using transfer lear
    cd frontend
    npm start
    ```
-3. Access the application at `http://localhost:3000` in your web browser.
+3. Access the application at `(http://127.0.0.1:8000)` in your web browser.
 
 ## Dataset
 The dataset used for training the signature verification system consists of original and forged signature images collected from various sources. Each image is labeled as either original or forged for training and evaluation purposes.
