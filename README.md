@@ -85,7 +85,7 @@ This project aims to develop a signature verification system using transfer lear
 The dataset used for training the signature verification system consists of original and forged signature images collected from various sources. Each image is labeled as either original or forged for training and evaluation purposes.
 
 ## Model Training
-The signature verification model is trained using transfer learning, where the pre-trained ResNet50 model is fine-tuned on the signature dataset. The model is compiled with Adam optimizer and categorical cross-entropy loss function.
+The signature verification model is trained using transfer learning, where the pre-trained model is fine-tuned on the signature dataset. 
 
 ## Deployment
 The trained model is deployed using Django, which serves as the backend for the web application. React.js is used for frontend development to provide an interactive user interface. Images are stored in a SQLite database for future training and reference.
