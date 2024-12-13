@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'upload.css' %}"> <!-- Link to upload.css -->
+    <title>Upload</title>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>Upload Your Image</h2>
+        <form id="uploadForm" enctype="multipart/form-data" onsubmit="event.preventDefault(); predictImage();">
+            <input type="file" id="imageUpload" name="image" accept="image/*" required> <!-- Changed name to 'image' -->
+            <button type="submit" class="predict-btn">Predict</button>
+        </form>
+        
+        <div class="model-status">
+            <div class="model-box" id="birnn">
+                <h3>BiRNN</h3>
+                <p>Accuracy: <span id="birnn-accuracy">N/A</span></p>
+                <p>Status: <span id="birnn-status">Waiting for prediction...</span></p>
+            </div>
+           
+            <div class="model-box" id="cnn">
+                <h3>CNN</h3>
+                <p>Accuracy: <span id="cnn-accuracy">N/A</span></p>
+                <p>Status: <span id="cnn-status">Waiting for prediction...</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'upload.js' %}"></script>
+    <a href="{% url 'logout' %}">Logout</a>
+ <!-- Link to upload.js -->
+</body>
+</html>

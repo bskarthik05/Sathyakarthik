@@ -1,0 +1,81 @@
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f8f8; /* Light background color for visibility */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    color: #333;
+}
+
+.upload-container {
+    width: 100%;
+    max-width: 800px; /* You can adjust this value */
+    height: 100vh; /* Full height of the viewport */
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 1); /* Full white background */
+    border-radius: 0; /* No rounded corners */
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* No shadow */
+}
+
+.upload-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.upload-box {
+    margin-bottom: 20px;
+}
+
+.upload-box input[type="file"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.predict-btn {
+    padding: 10px 20px;
+    background-color: #4a00e0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.predict-btn:hover {
+    background-color: #3a00b0;
+}
+
+.model-status {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.model-box {
+    flex: 1;
+    padding: 10px;
+    margin: 0 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.model-box h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.model-box p {
+    margin: 5px 0;
+}
