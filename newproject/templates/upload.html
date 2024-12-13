@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <!-- Correct way to link static CSS and JS -->
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+    <script src="{% static 'js/upload.js' %}" defer></script> <!-- Make sure this is deferred -->
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Signature for Verification</h1>
+        
+        <!-- File upload form -->
+        <form id="uploadForm" method="POST" enctype="multipart/form-data" onsubmit="event.preventDefault(); predictImage();">
+            {% csrf_token %}
+            
+            <label for="image">Select an Image:</label>
+            <input type="file" name="image" id="image" required>
+            <br><br>
+            <label for="source">Signature Source:</label>
+            <select name="source" id="source" required>
+                <option value="">-- Select Source --</option>
+                <option value="Bank">Bank</option>
+                <option value="Legal Document">Legal Document</option>
+                <option value="Other">Other</option>
+            </select>
+            <br><br>
+
+            <!-- Button to submit the form -->
+            <button type="submit">Predict</button>
+        </form>
+        
+        <!-- Display prediction results if available -->
+        <div id="prediction-results">
+            <!-- Results will be populated here dynamically -->
+        </div>
+        
+        <!-- Link to log out -->
+        <a href="{% url 'logout' %}">Log Out</a>
+    </div>
+</body>
+</html>
